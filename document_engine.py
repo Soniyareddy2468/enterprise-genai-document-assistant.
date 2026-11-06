@@ -15,7 +15,7 @@ def extract_pdf_pages(pdf_bytes: bytes, filename: str) -> List[Dict]:
     pages = []
     for page_number, page in enumerate(reader.pages, start=1):
         text = page.extract_text() or ""
-        text = re.sub(r"\\s+", " ", text).strip()
+        text = re.sub(r"\s+", " ", text).strip()
         if text:
             pages.append({"source": filename, "page": page_number, "text": text})
     return pages
